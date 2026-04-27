@@ -234,7 +234,7 @@
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px;
     flex: 1;
   }
   .projects-grid .inner-card {
@@ -709,7 +709,7 @@
   <div class="section-body">
     <div class="block-cmd-h">&gt; SELECTED_WORK</div>
     <div class="projects-grid">
-      <div class="inner-card" style="cursor: pointer; transition: border-color 0.2s; border-color: var(--color-border-tertiary); width: 1000.33px" onclick="window.open('project-01-spare-parts.html','_blank')" onmouseenter="this.style.borderColor='#222'" onmouseleave="this.style.borderColor='var(--color-border-tertiary)'">
+      <div class="inner-card" style="cursor: pointer; transition: border-color 0.2s; border-color: var(--color-border-tertiary);" onclick="window.open('project-01-spare-parts.html','_blank')" onmouseenter="this.style.borderColor='#222'" onmouseleave="this.style.borderColor='var(--color-border-tertiary)'">
         <div>
           <!-- thumbnail -->
           <div style="background: linear-gradient(135deg, #061540 0%, #0d2461 50%, #1a46b8 100%); border-radius:4px; height:180px; margin-bottom:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative; overflow:hidden;">
@@ -755,14 +755,22 @@
       </div>
       <div class="inner-card">
         <div>
-          <div class="bar" style="width:40%; margin:0 0 14px;"></div>
-          <div class="skel" style="height: 180px; border: 0.5px dashed var(--color-border-tertiary); background: transparent;"></div>
+          <!-- thumbnail -->
+          <div style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 50%, #1a1a1a 100%); border-radius:4px; height:180px; margin-bottom:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative; overflow:hidden;">
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.06) 1px,transparent 1px);background-size:20px 20px;"></div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:rgba(255,255,255,0.6);letter-spacing:2px;z-index:1;">COMING SOON</div>
+            <div style="font-family:var(--font-mono);font-size:24px;font-weight:700;color:#fff;z-index:1;text-align:center;line-height:1.2;letter-spacing:1px;">TBD</div>
+            <div style="font-family:var(--font-mono);font-size:8px;color:rgba(255,255,255,0.3);z-index:1;letter-spacing:1px;">To be determined</div>
+          </div>
+          <!-- meta -->
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-tertiary);margin-bottom:6px;letter-spacing:1px;">[ PROJECT_03 ] // TBD</div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;">TBD</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:12px;">This section will be filled later soon by me. Stay tuned for upcoming projects and case studies that showcase additional product management and design work.</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">Coming Soon</span>
+          </div>
         </div>
-        <div>
-          <div class="bar" style="margin:0 0 6px;"></div>
-          <div class="bar" style="width:60%; margin:0;"></div>
-          <div style="font-size:11px; color:var(--color-text-tertiary); margin-top:12px;">[ PROJECT_03 ] →</div>
-        </div>
+        <div style="margin-top:16px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-primary);font-weight:700;">[ COMING SOON ] →</div>
       </div>
     </div>
   </div>
