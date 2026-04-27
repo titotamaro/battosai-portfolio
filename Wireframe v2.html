@@ -1,0 +1,811 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberPunk Portfolio — Wireframe v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f4f4f4;
+    --color-background-tertiary: #ebebeb;
+    --color-border-primary: #222222;
+    --color-border-secondary: #aaaaaa;
+    --color-border-tertiary: #dddddd;
+    --color-text-primary: #111111;
+    --color-text-secondary: #555555;
+    --color-text-tertiary: #999999;
+    --font-mono: 'Space Mono', monospace;
+    --border-radius-md: 6px;
+    --border-radius-lg: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+  body {
+    background: #e8e6e1;
+    font-family: var(--font-mono);
+    min-height: 100vh;
+  }
+
+  /* ─────────────────────────────────────────────────────── */
+  /* FULL-VIEWPORT SECTION WRAPPER                           */
+  /* ─────────────────────────────────────────────────────── */
+  .section {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section + .section { border-top: 0.5px dashed var(--color-border-secondary); }
+
+  /* section header strip */
+  .section-header {
+    padding: 20px 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-mono);
+  }
+
+  .section-label {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    letter-spacing: 1px;
+  }
+
+  .section-cmd {
+    font-size: 12px;
+    color: var(--color-text-primary);
+  }
+
+  /* section inner content */
+  .section-body {
+    flex: 1;
+    padding: 24px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  /* dark sections (hero / video) */
+  .section-dark {
+    background: #0a0a0a;
+    color: rgba(255,255,255,0.9);
+  }
+  .section-dark .section-label { color: rgba(255,255,255,0.3); }
+  .section-dark .section-cmd { color: rgba(255,255,255,0.7); }
+
+  /* ─────────────────────────────────────────────────────── */
+  /* 01 — VIDEO HERO                                          */
+  /* ─────────────────────────────────────────────────────── */
+  .video-hero { position: absolute; inset: 0; overflow: hidden; background: #111; }
+
+  .scanlines {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 4px);
+    pointer-events: none;
+  }
+
+  .hero-nav {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
+    background: linear-gradient(rgba(0,0,0,0.6), transparent);
+    z-index: 2;
+  }
+  .hero-nav-logo { font-family: var(--font-mono); font-size: 13px; color: rgba(255,255,255,0.8); }
+  .hero-nav-toggle {
+    display: none;
+    border: 0.5px solid rgba(255,255,255,0.45);
+    border-radius: 6px;
+    background: rgba(0,0,0,0.45);
+    color: rgba(255,255,255,0.85);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+  .hero-nav-links { display: flex; gap: 28px; font-family: var(--font-mono); font-size: 12px; color: rgba(255,255,255,0.55); }
+  .hero-nav-links a { color: inherit; text-decoration: none; }
+  .hero-nav-links.open { display: flex; }
+
+  .video-hero-corner {
+    position: absolute; font-size: 11px; color: rgba(255,255,255,0.3); font-family: var(--font-mono); z-index: 2;
+  }
+
+  .hero-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; padding: 20px; background: rgba(0,0,0,0.45);
+    z-index: 1;
+  }
+
+  .hero-terminal { font-family: var(--font-mono); font-size: 13px; color: rgba(255,255,255,0.4); text-align: center; }
+  .hero-h1 {
+    font-family: var(--font-mono); font-weight: 700;
+    color: rgba(255,255,255,0.95); letter-spacing: 4px; line-height: 1.05;
+    text-align: center; font-size: clamp(48px, 9vw, 120px);
+  }
+  .hero-sub {
+    font-family: var(--font-mono); color: rgba(255,255,255,0.5);
+    font-size: 14px; letter-spacing: 5px; text-align: center;
+  }
+  .hero-btn {
+    border: 0.5px solid rgba(255,255,255,0.35);
+    border-radius: var(--border-radius-md);
+    padding: 10px 22px;
+    font-family: var(--font-mono); font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 2;
+  }
+  .scroll-hint-text { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 2px; }
+  .scroll-arrow {
+    width: 14px; height: 14px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    transform: rotate(45deg);
+  }
+
+  /* ─────────────────────────────────────────────────────── */
+  /* shared wireframe primitives                              */
+  /* ─────────────────────────────────────────────────────── */
+  .bar { height: 10px; background: var(--color-background-secondary); border-radius: 2px; margin-bottom: 8px; }
+  .skel { background: var(--color-background-secondary); border-radius: 3px; }
+
+  .block-cmd-h {
+    font-family: var(--font-mono);
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+  .section-dark .block-cmd-h { color: rgba(255,255,255,0.92); }
+
+  /* inner card */
+  .inner-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 16px 20px; }
+
+  /* timeline */
+  .tl-line { position: absolute; left: 8px; top: 8px; bottom: 8px; width: 0.5px; background: var(--color-border-secondary); }
+  .tl-dot  { position: absolute; left: -20px; top: 22px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 0.5px solid var(--color-border-secondary); }
+  .tl-dot.active { background: var(--color-text-primary); border-color: var(--color-text-primary); width: 12px; height: 12px; left: -21px; top: 21px; }
+
+  /* ABOUT 2-col layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* skills layout */
+  .skills-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    flex: 1;
+    min-height: 0;
+  }
+  .skill-category-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .skill-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .skill-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 4px;
+    background: var(--color-background-secondary);
+  }
+  .skill-icon svg { width: 18px; height: 18px; }
+  .skill-name { font-size: 11px; font-weight: 700; color: var(--color-text-primary); line-height: 1.2; margin-bottom: 2px; }
+  .skill-desc { font-size: 9px; color: var(--color-text-tertiary); line-height: 1.3; }
+
+  /* projects grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    flex: 1;
+  }
+  .projects-grid .inner-card {
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 24px;
+  }
+
+  /* CTA keys */
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    flex: 1;
+    align-content: center;
+  }
+  .cta-key {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 40px 24px;
+    font-family: var(--font-mono);
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  .cta-key .key-label { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 12px; }
+  .cta-key .key-main  { font-size: 18px; font-weight: 700; }
+
+  /* footer */
+  .footer {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    border-top: 0.5px dashed var(--color-border-secondary);
+  }
+
+  /* image placeholder box */
+  .img-placeholder {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 12px; color: var(--color-text-tertiary);
+    background: var(--color-background-secondary);
+  }
+
+  @media (max-width: 960px) {
+    .hero-nav {
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 18px 24px;
+    }
+    .hero-nav-toggle {
+      display: inline-flex;
+    }
+    .hero-nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      position: absolute;
+      top: 64px;
+      right: 24px;
+      background: rgba(0,0,0,0.88);
+      border: 0.5px solid rgba(255,255,255,0.16);
+      border-radius: 10px;
+      padding: 16px;
+      min-width: 180px;
+      z-index: 3;
+    }
+    .hero-nav-links.open {
+      display: flex;
+    }
+    .hero-nav-links a {
+      display: block;
+      color: rgba(255,255,255,0.9);
+    }
+    .section-body {
+      padding: 20px 24px 32px;
+    }
+    .section-header {
+      padding: 20px 24px 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .section-cmd, .section-label {
+      font-size: 10px;
+    }
+    .hero-content {
+      padding: 18px;
+    }
+    .hero-h1 {
+      font-size: clamp(34px, 12vw, 68px);
+    }
+    .hero-sub {
+      font-size: 13px;
+      letter-spacing: 4px;
+    }
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .skills-categories {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .cta-grid {
+      grid-template-columns: 1fr;
+    }
+    .cta-key {
+      padding: 30px 20px;
+    }
+    .footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 16px 24px;
+    }
+    .img-placeholder {
+      min-height: 260px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-nav {
+      padding: 16px 18px;
+    }
+    .hero-nav-toggle {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+    .section-body {
+      padding: 16px 18px 24px;
+    }
+    .section-header {
+      padding: 16px 18px 0;
+    }
+    .hero-content {
+      gap: 12px;
+    }
+    .hero-btn {
+      padding: 10px 16px;
+      font-size: 10px;
+    }
+    .skills-categories {
+      grid-template-columns: 1fr;
+    }
+    .block-cmd-h {
+      font-size: 28px;
+    }
+  }
+</style>
+</head>
+<body data-cc-id="cc-1" style="cursor: crosshair;">
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- 01 — VIDEO HERO (full viewport)                                 -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section class="section section-dark">
+  <div class="video-hero">
+    <video autoplay="" muted="" loop="" playsinline="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="scanlines"></div>
+
+    <div class="hero-nav">
+      <span class="hero-nav-logo">&gt; battosai is booting</span>
+      <button class="hero-nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰ MENU</button>
+      <div class="hero-nav-links">
+        <a href="#about">about</a>
+        <a href="#journey">journey</a>
+        <a href="#projects">projects</a>
+        <a href="#contact">contact</a>
+      </div>
+    </div>
+
+    <div class="video-hero-corner" style="top:24px; right:40px;">◉ ONLINE</div>
+    <div class="video-hero-corner" style="bottom:80px; right:40px;">LAT:35.6 // LON:139.6</div>
+    <div class="video-hero-corner" style="top:72px; left:40px;">
+</div>
+
+    <div class="hero-content">
+      <div class="hero-terminal">&gt; initializing_profile.exe</div>
+      <div class="hero-h1">[ TITO TAMARO ]</div>
+      <div class="hero-sub" data-cc-id="cc-2" style="">PRODUCT MANAGER // 9+ YEARS+ IN THE SYSTEM_</div>
+      <div class="hero-terminal" style="margin-top: 4px;">
+        &gt; <span style="border-right: 2px solid rgba(255,255,255,0.4); padding-right: 3px;">loading_dossier</span>
+      </div>
+      <div style="display: flex; gap: 14px; margin-top: 16px;">
+        <a class="hero-btn" href="https://github.com/titotamaro" target="_blank" rel="noreferrer noopener">[ GITHUB ]</a>
+        <a class="hero-btn" href="https://api.whatsapp.com/send?phone=6281320977863" target="_blank" rel="noreferrer noopener">[ WHATSAPP ]</a>
+        <a class="hero-btn" href="assets/Tito_Tamaro___CV%20(4).pdf" target="_blank" rel="noreferrer noopener">[ DOWNLOAD_CV ]</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-hint-text">SCROLL</div>
+      <div class="scroll-arrow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- 02 — ABOUT (full viewport)                                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="section-header" data-cc-id="cc-6">
+    <span class="section-label">[ 01 / ABOUT ]</span>
+    <span class="section-cmd" data-cc-id="cc-17">&gt; user_profile.log</span>
+  </div>
+  <div class="section-body" data-cc-id="cc-4">
+    <div class="block-cmd-h" data-cc-id="cc-7">&gt; WHO_AM_I</div>
+    <div class="two-col" data-cc-id="cc-5">
+      <div class="img-placeholder" style="padding:0; overflow:hidden; background:#000;">
+        <img src="assets/portrait.jpg" alt="portrait" style="width: 378.667px; height: 426.812px; object-fit: contain; object-position: center top; filter: grayscale(0.15) contrast(1.05); margin: 0px; opacity: 1;" data-cc-id="cc-3">
+      </div>
+      <div style="display:flex; flex-direction:column; justify-content:center; gap:20px;" data-cc-id="cc-9">
+
+        <!-- Tagline -->
+        <div style="font-family:var(--font-mono); font-size:13px; color:var(--color-text-tertiary); letter-spacing:1px;">
+          &gt; <em data-cc-id="cc-10">"Turning complex problems into products people actually use."</em>
+        </div>
+
+        <!-- Bio — condensed to 3 punchy lines -->
+        <div style="display:flex; flex-direction:column; gap:10px;" data-cc-id="cc-11">
+          <p style="font-size: 13px; line-height: 1.6; color: rgb(85, 85, 85);" data-cc-id="cc-8">
+            Senior PM with <strong style="color: rgb(85, 85, 85);">9+ years</strong> building &amp; scaling products across automotive, tech &amp; manufacturing. I sit at the intersection of business strategy, user needs, and engineering execution — translating ambiguity into clear, actionable roadmaps.
+          </p>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--color-text-secondary);" data-cc-id="cc-12">
+            Cross-functional by nature. Led teams of up to <strong>25</strong>, managed <strong data-cc-id="cc-13">multi-billion IDR portfolios</strong>, and partnered with Sales, Design &amp; Engineering to align diverse stakeholders around a single product vision.
+          </p>
+          <p style="font-size:13px; line-height:1.6; color:var(--color-text-secondary);" data-cc-id="cc-14">
+            Agile end-to-end — from backlog grooming to release management — without sacrificing quality or losing sight of the customer.
+          </p>
+        </div>
+
+        <!-- Closing -->
+        <div style="border-left: 2px solid var(--color-border-secondary); padding-left:14px; font-size:12px; color:var(--color-text-tertiary); font-style:italic; line-height:1.6;">
+          "Always open to connecting with teams building products that solve real business challenges."
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- 03 — SKILLS (full viewport)                                     -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-label">[ 02 / SKILLS ]</span>
+    <span class="section-cmd">&gt; inventory.sys</span>
+  </div>
+  <div class="section-body">
+    <div class="block-cmd-h">&gt; INVENTORY</div>
+    <div class="skills-categories">
+
+      <!-- PROJECT MANAGEMENT -->
+      <div>
+        <div class="skill-category-title">// Project Management</div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 4v5M16 4v5"></path></svg></div>
+          <div><div class="skill-name">Planning &amp; Scheduling</div><div class="skill-desc">Roadmaps, milestones &amp; delivery timelines</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
+          <div><div class="skill-name">Risk Mitigation</div><div class="skill-desc">Identify, assess &amp; contain project risks</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg></div>
+          <div><div class="skill-name">Resource Allocation</div><div class="skill-desc">Team capacity planning &amp; utilisation</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg></div>
+          <div><div class="skill-name">Budget &amp; Scope</div><div class="skill-desc">Cost control &amp; scope governance</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v4H4zM4 10h10v4H4zM4 16h7v4H4z"></path></svg></div>
+          <div><div class="skill-name">Change Management</div><div class="skill-desc">Drive adoption &amp; manage transitions</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg></div>
+          <div><div class="skill-name">Pitching</div><div class="skill-desc">Business cases &amp; executive buy-in</div></div>
+        </div>
+      </div>
+
+      <!-- STAKEHOLDER MANAGEMENT -->
+      <div>
+        <div class="skill-category-title">// Stakeholder Mgmt</div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg></div>
+          <div><div class="skill-name">Client Engagement</div><div class="skill-desc">Build trust &amp; sustain relationships</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+          <div><div class="skill-name">Bidding &amp; Pitching</div><div class="skill-desc">Proposals, tenders &amp; win strategies</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"></path><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"></path></svg></div>
+          <div><div class="skill-name">Executive Reporting</div><div class="skill-desc">C-suite dashboards &amp; status updates</div></div>
+        </div>
+      </div>
+
+      <!-- METHODOLOGIES -->
+      <div>
+        <div class="skill-category-title">// Methodologies</div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+          <div><div class="skill-name">SAFe</div><div class="skill-desc">Scaled Agile Framework at enterprise scale</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"></path></svg></div>
+          <div><div class="skill-name">Agile-Scrum</div><div class="skill-desc">Sprints, standups &amp; iterative delivery</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></div>
+          <div><div class="skill-name">Waterfall</div><div class="skill-desc">Sequential, gate-based project delivery</div></div>
+        </div>
+      </div>
+
+      <!-- TECHNICAL & TOOLS -->
+      <div data-cc-id="cc-16">
+        <div class="skill-category-title">// Technical &amp; Tools</div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></div>
+          <div><div class="skill-name">Azure</div><div class="skill-desc">Microsoft cloud services &amp; DevOps</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 14.899A7 7 0 1115.71 8h1.79a4.5 4.5 0 012.5 8.242"></path><path d="M12 12v9M8 17l4 4 4-4"></path></svg></div>
+          <div><div class="skill-name">AWS</div><div class="skill-desc">Cloud infrastructure &amp; managed services</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+          <div><div class="skill-name">JIRA</div><div class="skill-desc">Issue tracking &amp; project workflows</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+          <div><div class="skill-name">Python</div><div class="skill-desc">Scripting, automation &amp; data analysis</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg></div>
+          <div><div class="skill-name">PowerBI</div><div class="skill-desc">Interactive dashboards &amp; data viz</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
+          <div><div class="skill-name">MS Office Suite</div><div class="skill-desc">Word, Excel, PowerPoint &amp; Teams</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg></div>
+          <div><div class="skill-name" data-cc-id="cc-15">Front End Design</div><div class="skill-desc">UI systems &amp; component architecture</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- 04 — JOURNEY (full viewport)                                    -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section id="journey" class="section">
+  <div class="section-header">
+    <span class="section-label">[ 04 / JOURNEY ]</span>
+    <span class="section-cmd">&gt; career_timeline.db // 2017 → present</span>
+  </div>
+  <div class="section-body" style="overflow-y:auto;">
+    <div class="block-cmd-h">&gt; THE_PATH</div>
+
+    <div style="position: relative; padding-left: 28px; display:flex; flex-direction:column; gap:16px;">
+      <div class="tl-line" style="top:0; bottom:0;"></div>
+
+      <!-- Role 1 — Current -->
+      <div style="position: relative;">
+        <div class="tl-dot active"></div>
+        <div class="inner-card" style="border-color: var(--color-border-primary);">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <div>
+              <div style="font-size:16px; font-weight:700;">[ PRODUCT &amp; PROJECT MANAGER ]</div>
+              <div style="font-size:12px; color:var(--color-text-secondary); margin-top:3px;">Berlian Sistem Informasi (Mitsubishi Corporation) · Jakarta</div>
+            </div>
+            <div style="font-size:11px; color:var(--color-text-tertiary); font-family:var(--font-mono);">Nov 2023 – Present ●</div>
+          </div>
+          <ul style="padding-left:16px; display:grid; grid-template-columns:1fr 1fr; gap:4px 24px;">
+            <li style="font-size:11px; color:var(--color-text-secondary);">Managed <strong>1B IDR/year</strong> executive mandate across automotive digital portfolio</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Spearheaded <strong>RAG AI (EIRA)</strong> on Azure + LangChain, boosting org productivity</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Led <strong>2.5B IDR</strong> enterprise HRD system from vendor selection to go-live</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Directed AOI Division digital projects, managing team of <strong>25 members</strong></li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Integrated <strong>ESG &amp; GCG</strong> principles into technology delivery &amp; vendor workflows</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Delivered strategic transformation reports &amp; change management programs to top management</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 2 -->
+      <div style="position: relative;">
+        <div class="tl-dot"></div>
+        <div class="inner-card">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <div>
+              <div style="font-size:16px; font-weight:700;">[ BUSINESS ANALYST &amp; ENGAGEMENT MANAGER ]</div>
+              <div style="font-size:12px; color:var(--color-text-secondary); margin-top:3px;">Xtremax · Bandung / Singapore</div>
+            </div>
+            <div style="font-size:11px; color:var(--color-text-tertiary); font-family:var(--font-mono);">Jan 2021 – Nov 2023</div>
+          </div>
+          <ul style="padding-left:16px; display:grid; grid-template-columns:1fr 1fr; gap:4px 24px;">
+            <li style="font-size:11px; color:var(--color-text-secondary);">Managed <strong>20+ high-stakes Singapore Government</strong> tenders end-to-end</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Won competitive bids through strategic pricing &amp; financial modelling</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Built <strong>ACEAS for CEA Singapore</strong> — licensing &amp; exam platform, team of 20</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Established strategic partnerships across Singapore public sectors</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);"><strong>Danone Sales Incentive Automation</strong> — PowerBI dashboard cutting turnaround time</li>
+            <li style="font-size:11px; color:var(--color-text-secondary);">Translated macro trends into MVP digital strategies using Agile, Docker &amp; Kubernetes</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 3 -->
+      <div style="position: relative;">
+        <div class="tl-dot"></div>
+        <div class="inner-card">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <div>
+              <div style="font-size:16px; font-weight:700;">[ ENGINEERING &amp; PRODUCTION STAFF ]</div>
+              <div style="font-size:12px; color:var(--color-text-secondary); margin-top:3px;">Excel Metal Industry · Cikarang</div>
+            </div>
+            <div style="font-size:11px; color:var(--color-text-tertiary); font-family:var(--font-mono);">Oct 2018 – Mar 2020</div>
+          </div>
+          <ul style="padding-left:16px;">
+            <li style="font-size:11px; color:var(--color-text-secondary);">Optimised manufacturing workflows via <strong>SQCDM framework</strong>, identifying &amp; reducing operational risk on shop floor</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Role 4 -->
+      <div style="position: relative;">
+        <div class="tl-dot"></div>
+        <div class="inner-card">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
+            <div>
+              <div style="font-size:16px; font-weight:700;">[ TECHNICAL MARKETING ENGINEER ]</div>
+              <div style="font-size:12px; color:var(--color-text-secondary); margin-top:3px;">NS Bluescope Indonesia · Jakarta</div>
+            </div>
+            <div style="font-size:11px; color:var(--color-text-tertiary); font-family:var(--font-mono);">Mar 2017 – Oct 2018</div>
+          </div>
+          <ul style="padding-left:16px;">
+            <li style="font-size:11px; color:var(--color-text-secondary);">Conducted competitive landscape assessments to <strong>drive product innovation</strong>, bridging technical capabilities with market demands</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- 05 — PROJECTS (full viewport)                                   -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section id="projects" class="section">
+  <div class="section-header">
+    <span class="section-label">[ 04 / PROJECTS ]</span>
+    <span class="section-cmd">&gt; case_studies/</span>
+  </div>
+  <div class="section-body">
+    <div class="block-cmd-h">&gt; SELECTED_WORK</div>
+    <div class="projects-grid">
+      <div class="inner-card" style="cursor: pointer; transition: border-color 0.2s; border-color: var(--color-border-tertiary); width: 1000.33px" onclick="window.open('project-01-spare-parts.html','_blank')" onmouseenter="this.style.borderColor='#222'" onmouseleave="this.style.borderColor='var(--color-border-tertiary)'">
+        <div>
+          <!-- thumbnail -->
+          <div style="background: linear-gradient(135deg, #061540 0%, #0d2461 50%, #1a46b8 100%); border-radius:4px; height:180px; margin-bottom:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative; overflow:hidden;">
+            <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(59,163,232,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(59,163,232,0.06) 1px,transparent 1px);background-size:20px 20px;"></div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:rgba(59,163,232,0.6);letter-spacing:2px;z-index:1;">MITSUBISHI · BSI</div>
+            <div style="font-family:var(--font-mono);font-size:16px;font-weight:700;color:#fff;z-index:1;text-align:center;line-height:1.2;letter-spacing:1px;">DIGITAL SPARE<br>PARTS CATALOG</div>
+            <div style="font-family:var(--font-mono);font-size:8px;color:rgba(255,255,255,0.3);z-index:1;letter-spacing:1px;">Product Definition Document</div>
+            <div style="position:absolute;bottom:8px;right:12px;font-family:var(--font-mono);font-size:8px;color:rgba(59,163,232,0.5);">10 slides ↗</div>
+          </div>
+          <!-- meta -->
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-tertiary);margin-bottom:6px;letter-spacing:1px;">[ PROJECT_01 ] // 2023–2024</div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Digital Spare Parts Catalog</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:12px;">Replaced MMKSI's desktop-only CAPS system with a live web platform — integrating SAP R3, D-NET &amp; Azure OCR across dealers, parts shops &amp; fleet customers.</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">Product</span>
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">Azure</span>
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">SAP R3</span>
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">Agile</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-primary);font-weight:700;">[ VIEW CASE STUDY ] →</div>
+      </div>
+      <div class="inner-card" style="cursor: pointer; transition: border-color 0.2s; border-color: var(--color-border-tertiary);" onclick="window.open('project-02-bsi-design-system.html','_blank')" onmouseenter="this.style.borderColor='#222'" onmouseleave="this.style.borderColor='var(--color-border-tertiary)'">
+        <div>
+          <div style="background: linear-gradient(135deg, #1f2a3e 0%, #263753 50%, #142136 100%); border-radius:4px; height:180px; margin-bottom:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; position:relative; overflow:hidden;">
+            <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(138, 180, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(138, 180, 255, 0.06) 1px, transparent 1px); background-size: 24px 24px;"></div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:rgba(138,180,255,0.6);letter-spacing:2px;z-index:1;">BERLIAN SISTEM INFORMASI · BSI</div>
+            <div style="font-family:var(--font-mono);font-size:16px;font-weight:700;color:#fff;z-index:1;text-align:center;line-height:1.2;letter-spacing:1px;">SYSTEM DESIGN<br>FOUNDATION</div>
+            <div style="font-family:var(--font-mono);font-size:8px;color:rgba(255,255,255,0.3);z-index:1;letter-spacing:1px;">Design system architecture & UI governance</div>
+            <div style="position:absolute;bottom:8px;right:12px;font-family:var(--font-mono);font-size:8px;color:rgba(138,180,255,0.5);">HTML showcase ↗</div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-tertiary);margin-bottom:6px;letter-spacing:1px;">[ PROJECT_02 ] // 2024</div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Berlian Sistem Informasi Design System</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:12px;">Built the core system design for BSI: reusable UI patterns, component standards, and governance to scale enterprise applications consistently across the BSI digital ecosystem.</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">Design System</span>
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">UI Library</span>
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">Enterprise</span>
+            <span style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:0.5px solid var(--color-border-tertiary);border-radius:2px;color:var(--color-text-tertiary);">Governance</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;font-family:var(--font-mono);font-size:11px;color:var(--color-text-primary);font-weight:700;">[ VIEW CASE STUDY ] →</div>
+      </div>
+      <div class="inner-card">
+        <div>
+          <div class="bar" style="width:40%; margin:0 0 14px;"></div>
+          <div class="skel" style="height: 180px; border: 0.5px dashed var(--color-border-tertiary); background: transparent;"></div>
+        </div>
+        <div>
+          <div class="bar" style="margin:0 0 6px;"></div>
+          <div class="bar" style="width:60%; margin:0;"></div>
+          <div style="font-size:11px; color:var(--color-text-tertiary); margin-top:12px;">[ PROJECT_03 ] →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- 06 — CONTACT (full viewport)                                    -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<section id="contact" class="section">
+  <div class="section-header">
+    <span class="section-label">[ 05 / CONTACT ]</span>
+    <span class="section-cmd">&gt; establish_connection.run</span>
+  </div>
+  <div class="section-body" style="justify-content:center;">
+    <div class="block-cmd-h" style="text-align:center;">&gt; LET'S_TALK</div>
+    <div class="cta-grid">
+      <a class="cta-key" href="https://github.com/titotamaro" target="_blank" rel="noreferrer noopener">
+        <div class="key-label">[ F1 ]</div>
+        <div class="key-main">GITHUB →</div>
+      </a>
+      <a class="cta-key" href="https://api.whatsapp.com/send?phone=6281320977863" target="_blank" rel="noreferrer noopener">
+        <div class="key-label">[ F2 ]</div>
+        <div class="key-main">WHATSAPP →</div>
+      </a>
+      <a class="cta-key" href="assets/Tito_Tamaro___CV%20(4).pdf" target="_blank" rel="noreferrer noopener">
+        <div class="key-label">[ F3 ]</div>
+        <div class="key-main">DOWNLOAD_CV →</div>
+      </a>
+    </div>
+  </div>
+  <div class="footer">
+    <div>[ 07 / FOOTER ] &nbsp; © 2026</div>
+    <div>● SYSTEM_STATUS: ONLINE</div>
+  </div>
+</section>
+
+<script>
+  const toggle = document.querySelector('.hero-nav-toggle');
+  const navLinks = document.querySelector('.hero-nav-links');
+  toggle?.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>
+
+</body></html>

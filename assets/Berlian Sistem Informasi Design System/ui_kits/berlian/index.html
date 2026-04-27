@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT Berlian Sistem Informasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Inter';
+    src: url('../../fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+    font-weight: 100 900; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Inter';
+    src: url('../../fonts/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype');
+    font-weight: 100 900; font-style: italic; font-display: swap;
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; }
+  body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; -webkit-font-smoothing: antialiased; }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #f1f5f9; } ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Components.jsx"></script>
+<script type="text/babel">
+// ── Page: Homepage ────────────────────────────────────────────
+function PageHome({ onNav }) {
+  const services = [
+    { icon: 'cpu', title: 'Konsultasi IT', desc: 'Analisis kebutuhan dan perancangan arsitektur sistem informasi yang tepat untuk organisasi Anda.', tag: 'Strategi' },
+    { icon: 'code-2', title: 'Pengembangan Sistem', desc: 'Pembangunan aplikasi dan sistem informasi berbasis kebutuhan bisnis, cepat dan andal.', tag: 'Teknologi' },
+    { icon: 'cloud', title: 'Infrastruktur Cloud', desc: 'Migrasi, pengelolaan, dan optimasi infrastruktur cloud yang aman dan skalabel.', tag: 'Cloud' },
+    { icon: 'shield-check', title: 'Keamanan Siber', desc: 'Proteksi sistem dan data perusahaan dari ancaman siber dengan solusi keamanan mutakhir.', tag: 'Keamanan' },
+  ];
+  return (
+    <div>
+      {/* Hero */}
+      <div style={{ background: 'linear-gradient(135deg, #061540 0%, #0d2461 45%, #1a46b8 100%)', padding: '80px 48px 72px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: -60, right: -60, width: 360, height: 360, borderRadius: '50%', background: 'rgba(59,163,232,0.07)', pointerEvents: 'none' }}></div>
+        <div style={{ position: 'absolute', bottom: -80, right: 120, width: 240, height: 240, borderRadius: '50%', background: 'rgba(26,86,219,0.12)', pointerEvents: 'none' }}></div>
+        <div style={{ maxWidth: 700, position: 'relative' }}>
+          <div style={{ display: 'inline-block', background: 'rgba(59,163,232,0.18)', color: '#3ba3e8', fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 12px', borderRadius: 9999, marginBottom: 20 }}>
+            Solusi Teknologi Terpercaya
+          </div>
+          <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '3.5rem', fontWeight: 800, color: 'white', lineHeight: 1.1, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 20 }}>
+            Membangun Sistem<br />Untuk Masa Depan
+          </h1>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.65, maxWidth: 520, marginBottom: 32 }}>
+            PT Berlian Sistem Informasi hadir sebagai mitra strategis transformasi digital Anda — dari konsultasi hingga implementasi sistem yang handal dan terukur.
+          </p>
+          <div style={{ display: 'flex', gap: 12 }}>
+            <BSIButton variant="white" size="lg" onClick={() => onNav('Layanan')}>Lihat Layanan Kami</BSIButton>
+            <BSIButton variant="secondary" size="lg" style={{ borderColor: 'rgba(255,255,255,0.4)', color: 'white' }} onClick={() => onNav('Kontak')}>Hubungi Kami</BSIButton>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats bar */}
+      <div style={{ background: '#0d2461', padding: '28px 48px', display: 'flex', gap: 0, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        {[['240+', 'Klien Aktif'], ['15+', 'Tahun Pengalaman'], ['99.9%', 'Uptime SLA'], ['500+', 'Proyek Selesai']].map(([v, l], i) => (
+          <React.Fragment key={l}>
+            <BSIStatItem value={v} label={l} />
+            {i < 3 && <div style={{ width: 1, background: 'rgba(255,255,255,0.1)', margin: '0 16px' }}></div>}
+          </React.Fragment>
+        ))}
+      </div>
+
+      {/* Services */}
+      <div style={{ padding: '64px 48px' }}>
+        <div style={{ marginBottom: 40 }}>
+          <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 700, color: '#1a56db', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>Apa yang Kami Tawarkan</div>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '2.25rem', fontWeight: 800, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.03em' }}>Layanan Unggulan</h2>
+        </div>
+        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+          {services.map(s => <BSIServiceCard key={s.title} {...s} />)}
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div style={{ background: 'linear-gradient(135deg,#0d2461,#1a56db)', padding: '56px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32 }}>
+        <div>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '2rem', fontWeight: 800, color: 'white', textTransform: 'uppercase', marginBottom: 10 }}>Siap Bertransformasi Digital?</h2>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: 'rgba(255,255,255,0.7)', maxWidth: 480 }}>Diskusikan kebutuhan sistem informasi bisnis Anda bersama tim ahli kami. Konsultasi pertama gratis.</p>
+        </div>
+        <BSIButton variant="white" size="lg" onClick={() => onNav('Kontak')}>Mulai Konsultasi</BSIButton>
+      </div>
+
+      <BSIFooter />
+    </div>
+  );
+}
+
+// ── Page: Services ────────────────────────────────────────────
+function PageServices() {
+  const all = [
+    { icon: 'cpu', title: 'Konsultasi IT', desc: 'Analisis mendalam kebutuhan sistem informasi dan rekomendasi solusi yang tepat sasaran.', tag: 'Strategi' },
+    { icon: 'code-2', title: 'Pengembangan Sistem', desc: 'Aplikasi web, mobile, dan sistem enterprise yang dibangun sesuai kebutuhan spesifik bisnis Anda.', tag: 'Teknologi' },
+    { icon: 'cloud', title: 'Infrastruktur Cloud', desc: 'Desain, migrasi, dan manajemen lingkungan cloud — AWS, GCP, Azure.', tag: 'Cloud' },
+    { icon: 'shield-check', title: 'Keamanan Siber', desc: 'Audit keamanan, penetration testing, dan implementasi protokol keamanan data perusahaan.', tag: 'Keamanan' },
+    { icon: 'database', title: 'Manajemen Data', desc: 'Desain database, data warehouse, ETL pipeline, dan solusi business intelligence.', tag: 'Data' },
+    { icon: 'headphones', title: 'IT Support', desc: 'Dukungan teknis 24/7 untuk memastikan operasional sistem berjalan tanpa hambatan.', tag: 'Support' },
+  ];
+  return (
+    <div>
+      <div style={{ background: '#0d2461', padding: '48px', marginBottom: 0 }}>
+        <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 700, color: '#3ba3e8', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>PT Berlian Sistem Informasi</div>
+        <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '2.75rem', fontWeight: 800, color: 'white', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Layanan Kami</h1>
+      </div>
+      <div style={{ padding: '48px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        {all.map(s => <BSIServiceCard key={s.title} {...s} />)}
+      </div>
+      <BSIFooter />
+    </div>
+  );
+}
+
+// ── Page: Dashboard ───────────────────────────────────────────
+function PageDashboard() {
+  const [activeNav, setActiveNav] = React.useState('Dashboard');
+  const projects = [
+    { name: 'SIMRS RSUD Fatmawati', client: 'Kemenkes RI', status: 'Aktif', prog: 78 },
+    { name: 'ERP Manufaktur Jaya', client: 'PT Jaya Abadi', status: 'Aktif', prog: 45 },
+    { name: 'Cloud Migration BNI', client: 'PT BNI Tbk', status: 'Selesai', prog: 100 },
+    { name: 'Audit Keamanan Telkom', client: 'PT Telkom', status: 'Pending', prog: 12 },
+  ];
+  const statusColor = { Aktif: '#16a34a', Selesai: '#1a56db', Pending: '#d97706' };
+  const statusBg = { Aktif: '#f0fdf4', Selesai: '#eff6ff', Pending: '#fffbeb' };
+  return (
+    <div style={{ display: 'flex', minHeight: 'calc(100vh - 64px)', background: '#f8fafc' }}>
+      <BSISidebar active={activeNav} onNav={setActiveNav} />
+      <div style={{ flex: 1, padding: '32px 36px', overflowY: 'auto' }}>
+        <div style={{ marginBottom: 28 }}>
+          <h2 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', textTransform: 'uppercase', letterSpacing: '0.03em' }}>Selamat Datang, Admin</h2>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#64748b', marginTop: 4 }}>Ringkasan operasional per hari ini</p>
+        </div>
+        <div style={{ display: 'flex', gap: 16, marginBottom: 28, flexWrap: 'wrap' }}>
+          <BSIDashCard title="Total Klien" value="240" sub="↑ 12 bulan ini" icon="users" />
+          <BSIDashCard title="Proyek Aktif" value="18" sub="3 tenggat pekan ini" icon="briefcase" />
+          <BSIDashCard title="Pendapatan" value="Rp 4.2M" sub="↑ 18% YoY" icon="trending-up" />
+          <BSIDashCard title="Tiket Support" value="7" sub="2 perlu respons" icon="headphones" />
+        </div>
+        {/* Projects table */}
+        <div style={{ background: 'white', borderRadius: 10, border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(13,36,97,0.07)', overflow: 'hidden' }}>
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: 15, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.03em', color: '#0f172a' }}>Proyek Berjalan</div>
+            <BSIButton variant="secondary" size="sm">Lihat Semua</BSIButton>
+          </div>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                {['Nama Proyek', 'Klien', 'Status', 'Progres'].map(h => (
+                  <th key={h} style={{ padding: '10px 20px', textAlign: 'left', fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((p, i) => (
+                <tr key={p.name} style={{ borderBottom: i < projects.length - 1 ? '1px solid #f1f5f9' : 'none' }}>
+                  <td style={{ padding: '14px 20px', fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: '#0f172a' }}>{p.name}</td>
+                  <td style={{ padding: '14px 20px', fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#475569' }}>{p.client}</td>
+                  <td style={{ padding: '14px 20px' }}>
+                    <span style={{ display: 'inline-block', padding: '2px 9px', borderRadius: 9999, fontSize: 11, fontWeight: 600, fontFamily: "'Inter', sans-serif", background: statusBg[p.status], color: statusColor[p.status] }}>{p.status}</span>
+                  </td>
+                  <td style={{ padding: '14px 20px', minWidth: 140 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <div style={{ flex: 1, background: '#e2e8f0', borderRadius: 9999, height: 6, overflow: 'hidden' }}>
+                        <div style={{ width: `${p.prog}%`, height: '100%', background: p.prog === 100 ? '#16a34a' : '#1a56db', borderRadius: 9999 }}></div>
+                      </div>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 600, color: '#475569', minWidth: 32, textAlign: 'right' }}>{p.prog}%</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Page: Contact ─────────────────────────────────────────────
+function PageContact() {
+  const [form, setForm] = React.useState({ nama: '', email: '', perusahaan: '', pesan: '' });
+  const [sent, setSent] = React.useState(false);
+  return (
+    <div>
+      <div style={{ background: '#0d2461', padding: '48px' }}>
+        <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 700, color: '#3ba3e8', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 10 }}>Kami Siap Membantu</div>
+        <h1 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '2.75rem', fontWeight: 800, color: 'white', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Hubungi Kami</h1>
+      </div>
+      <div style={{ padding: '56px 48px', display: 'flex', gap: 48, flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, minWidth: 280 }}>
+          {sent ? (
+            <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, padding: 28, textAlign: 'center' }}>
+              <i data-lucide="check-circle-2" style={{ width: 40, height: 40, color: '#16a34a', marginBottom: 12 }}></i>
+              <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.25rem', fontWeight: 700, color: '#0f172a', textTransform: 'uppercase', marginBottom: 8 }}>Pesan Terkirim!</div>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#475569' }}>Tim kami akan menghubungi Anda dalam 1×24 jam kerja.</p>
+            </div>
+          ) : (
+            <div style={{ background: 'white', borderRadius: 10, border: '1px solid #e2e8f0', boxShadow: '0 4px 12px rgba(13,36,97,0.08)', padding: 32 }}>
+              <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.25rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: 20, color: '#0f172a' }}>Kirim Pesan</h3>
+              <BSIFormField label="Nama Lengkap" placeholder="Budi Santoso" value={form.nama} onChange={e => setForm({ ...form, nama: e.target.value })} />
+              <BSIFormField label="Email" type="email" placeholder="budi@perusahaan.co.id" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+              <BSIFormField label="Perusahaan" placeholder="PT Nama Perusahaan" value={form.perusahaan} onChange={e => setForm({ ...form, perusahaan: e.target.value })} />
+              <div style={{ marginBottom: 20 }}>
+                <label style={{ display: 'block', fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 600, color: '#334155', marginBottom: 5 }}>Pesan</label>
+                <textarea rows={4} placeholder="Ceritakan kebutuhan sistem informasi Anda…" value={form.pesan} onChange={e => setForm({ ...form, pesan: e.target.value })}
+                  style={{ width: '100%', fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#0f172a', background: 'white', border: '1.5px solid #cbd5e1', borderRadius: 6, padding: '9px 12px', outline: 'none', resize: 'vertical' }}>
+                </textarea>
+              </div>
+              <BSIButton variant="primary" size="lg" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setSent(true)}>Kirim Pesan</BSIButton>
+            </div>
+          )}
+        </div>
+        <div style={{ flex: 1, minWidth: 240 }}>
+          <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.25rem', fontWeight: 700, textTransform: 'uppercase', color: '#0f172a', marginBottom: 24 }}>Informasi Kontak</div>
+          {[
+            { icon: 'map-pin', label: 'Alamat', val: 'Jakarta, Indonesia' },
+            { icon: 'mail', label: 'Email', val: 'info@berlian.co.id' },
+            { icon: 'phone', label: 'Telepon', val: '+62 21 1234 5678' },
+            { icon: 'clock', label: 'Jam Operasional', val: 'Senin–Jumat, 08.00–17.00 WIB' },
+          ].map(({ icon, label, val }) => (
+            <div key={label} style={{ display: 'flex', gap: 14, marginBottom: 20, alignItems: 'flex-start' }}>
+              <div style={{ width: 38, height: 38, borderRadius: 8, background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <i data-lucide={icon} style={{ width: 18, height: 18, color: '#1a56db' }}></i>
+              </div>
+              <div>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 2 }}>{label}</div>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#0f172a' }}>{val}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <BSIFooter />
+    </div>
+  );
+}
+
+// ── App ───────────────────────────────────────────────────────
+function App() {
+  const [page, setPage] = React.useState('Beranda');
+
+  React.useEffect(() => {
+    lucide.createIcons();
+  });
+
+  const pages = { 'Beranda': PageHome, 'Layanan': PageServices, 'Dashboard': PageDashboard, 'Kontak': PageContact };
+  const PageComponent = pages[page] || PageHome;
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <BSINavbar current={page} onNav={setPage} />
+      <div style={{ flex: 1 }}>
+        <PageComponent onNav={setPage} />
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

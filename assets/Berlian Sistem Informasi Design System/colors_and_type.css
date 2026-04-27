@@ -1,0 +1,315 @@
+/* ============================================================
+   PT Berlian Sistem Informasi — Design System
+   colors_and_type.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&display=swap');
+
+/* Inter — brand body font (variable, local) */
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Italic-VariableFont_opsz_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ============================================================
+   COLOR TOKENS — Base Palette
+   ============================================================ */
+:root {
+  /* Brand Blue Scale */
+  --color-brand-900:  #061540;
+  --color-brand-800:  #0d2461;
+  --color-brand-700:  #12348a;
+  --color-brand-600:  #1a46b8;
+  --color-brand-500:  #1a56db;   /* Core brand blue */
+  --color-brand-400:  #1e7bc4;
+  --color-brand-300:  #3ba3e8;
+  --color-brand-200:  #90cdf4;
+  --color-brand-100:  #dbeafe;
+  --color-brand-50:   #eff6ff;
+
+  /* Neutral Scale */
+  --color-neutral-950: #0a0f1e;
+  --color-neutral-900: #0f172a;
+  --color-neutral-800: #1e293b;
+  --color-neutral-700: #334155;
+  --color-neutral-600: #475569;
+  --color-neutral-500: #64748b;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-50:  #f8fafc;
+  --color-white:       #ffffff;
+
+  /* Semantic / Functional Colors */
+  --color-success:     #16a34a;
+  --color-success-bg:  #f0fdf4;
+  --color-warning:     #d97706;
+  --color-warning-bg:  #fffbeb;
+  --color-error:       #dc2626;
+  --color-error-bg:    #fef2f2;
+  --color-info:        #0284c7;
+  --color-info-bg:     #f0f9ff;
+
+  /* Brand Gradient */
+  --gradient-brand: linear-gradient(135deg, #0d2461 0%, #1a56db 50%, #3ba3e8 100%);
+  --gradient-brand-vertical: linear-gradient(180deg, #0d2461 0%, #1a56db 100%);
+  --gradient-hero: linear-gradient(135deg, #061540 0%, #0d2461 40%, #1a46b8 100%);
+
+  /* ============================================================
+     SEMANTIC COLOR ALIASES
+     ============================================================ */
+  --color-fg-primary:   var(--color-neutral-900);
+  --color-fg-secondary: var(--color-neutral-600);
+  --color-fg-muted:     var(--color-neutral-400);
+  --color-fg-inverse:   var(--color-white);
+  --color-fg-brand:     var(--color-brand-500);
+
+  --color-bg-page:      var(--color-white);
+  --color-bg-subtle:    var(--color-neutral-50);
+  --color-bg-muted:     var(--color-neutral-100);
+  --color-bg-brand:     var(--color-brand-800);
+  --color-bg-brand-dark:var(--color-brand-900);
+
+  --color-border:       var(--color-neutral-200);
+  --color-border-focus: var(--color-brand-500);
+
+  /* ============================================================
+     TYPOGRAPHY — Font Families
+     ============================================================ */
+  --font-display:  'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body:     'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:     'Menlo', 'Consolas', 'Courier New', monospace;
+
+  /* Font Weights */
+  --fw-light:      300;
+  --fw-regular:    400;
+  --fw-medium:     500;
+  --fw-semibold:   600;
+  --fw-bold:       700;
+  --fw-extrabold:  800;
+
+  /* Type Scale */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-lg:    1.125rem;   /* 18px */
+  --text-xl:    1.25rem;    /* 20px */
+  --text-2xl:   1.5rem;     /* 24px */
+  --text-3xl:   1.875rem;   /* 30px */
+  --text-4xl:   2.25rem;    /* 36px */
+  --text-5xl:   3rem;       /* 48px */
+  --text-6xl:   3.75rem;    /* 60px */
+  --text-7xl:   4.5rem;     /* 72px */
+
+  /* Line Heights */
+  --leading-tight:   1.2;
+  --leading-snug:    1.35;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  /* Letter Spacing */
+  --tracking-tight:  -0.01em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+  --tracking-widest:  0.15em;
+
+  /* ============================================================
+     SEMANTIC TYPE STYLES (use as class references)
+     ============================================================ */
+
+  /* Spacing Scale */
+  --space-1:   0.25rem;   /* 4px  */
+  --space-2:   0.5rem;    /* 8px  */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+
+  /* Border Radius */
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(13,36,97,0.08), 0 1px 2px rgba(13,36,97,0.06);
+  --shadow-md:  0 4px 12px rgba(13,36,97,0.10), 0 2px 4px rgba(13,36,97,0.06);
+  --shadow-lg:  0 8px 32px rgba(13,36,97,0.14), 0 4px 8px rgba(13,36,97,0.08);
+  --shadow-xl:  0 20px 60px rgba(13,36,97,0.18), 0 8px 16px rgba(13,36,97,0.10);
+  --shadow-inner: inset 0 2px 4px rgba(13,36,97,0.08);
+
+  /* Transitions */
+  --transition-fast:   150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow:   400ms ease-in-out;
+}
+
+/* ============================================================
+   BASE SEMANTIC ELEMENT STYLES
+   ============================================================ */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-fg-primary);
+  background-color: var(--color-bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--fw-extrabold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-fg-primary);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-fg-primary);
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-fg-primary);
+}
+
+h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-fg-primary);
+}
+
+h5, h6 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-fg-primary);
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-fg-primary);
+}
+
+small, .text-sm {
+  font-size: var(--text-sm);
+  color: var(--color-fg-secondary);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.4em;
+}
+
+a {
+  color: var(--color-brand-500);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--color-brand-700);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+.text-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.text-brand { color: var(--color-brand-500); }
+.text-muted  { color: var(--color-fg-muted); }
+.text-inverse { color: var(--color-fg-inverse); }
+
+.bg-brand    { background: var(--color-bg-brand); }
+.bg-gradient { background: var(--gradient-brand); }
+.bg-subtle   { background: var(--color-bg-subtle); }
+
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-6);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-brand-500);
+  color: var(--color-white);
+}
+.btn-primary:hover { background: var(--color-brand-700); }
+.btn-primary:active { transform: scale(0.97); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-brand-500);
+  border: 1.5px solid var(--color-brand-500);
+}
+.btn-secondary:hover { background: var(--color-brand-50); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-fg-secondary);
+}
+.btn-ghost:hover { background: var(--color-bg-muted); }

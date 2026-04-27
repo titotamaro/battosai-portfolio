@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Spare Parts Catalog — Product Definition</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/fonts/Inter.ttf') format('truetype');
+  font-weight: 100 900;
+}
+
+:root {
+  --navy:    #061540;
+  --navy2:   #0d2461;
+  --blue:    #1a56db;
+  --blue2:   #1e7bc4;
+  --sky:     #3ba3e8;
+  --white:   #ffffff;
+  --offwhite:#f1f5f9;
+  --muted:   #94a3b8;
+  --border:  #1e293b;
+  --grad:    linear-gradient(135deg, #061540 0%, #0d2461 45%, #1a46b8 100%);
+  --font-d:  'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-b:  'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+deck-stage { --slide-bg: var(--navy); }
+
+/* ── shared slide base ── */
+section {
+  width: 1920px; height: 1080px;
+  font-family: var(--font-b);
+  color: var(--white);
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+
+/* bg grid */
+section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(59,163,232,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,163,232,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ── NAV BAR ── */
+.nav {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px;
+  background: rgba(6,21,64,0.85);
+  border-bottom: 1px solid rgba(59,163,232,0.15);
+  z-index: 10;
+}
+.nav-logo { height: 32px; opacity: 0.9; }
+.nav-tag {
+  font-family: var(--font-d);
+  font-size: 14px; font-weight: 600;
+  letter-spacing: 3px; color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── SLIDE LABEL ── */
+.slide-label {
+  position: absolute; bottom: 36px; right: 64px;
+  font-family: var(--font-b); font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+}
+
+/* ── accent line ── */
+.accent { width: 56px; height: 4px; background: var(--blue); border-radius: 2px; margin-bottom: 20px; }
+.accent.sky { background: var(--sky); }
+
+/* ── tag chip ── */
+.chip {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-d); font-size: 13px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 5px 14px;
+  border: 1px solid rgba(59,163,232,0.4);
+  border-radius: 3px;
+  color: var(--sky);
+  background: rgba(59,163,232,0.08);
+}
+
+/* ── pill tag ── */
+.pill {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px;
+  background: rgba(26,86,219,0.25);
+  border: 1px solid rgba(26,86,219,0.5);
+  color: var(--sky);
+}
+
+/* ── card ── */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(59,163,232,0.15);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+/* ── icon circle ── */
+.icon-circle {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(26,86,219,0.2);
+  border: 1px solid rgba(59,163,232,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+  margin-bottom: 16px;
+}
+
+/* ── stat ── */
+.stat-num {
+  font-family: var(--font-d); font-size: 64px; font-weight: 800;
+  color: var(--sky); line-height: 1;
+}
+.stat-label {
+  font-size: 14px; color: var(--muted);
+  margin-top: 4px; line-height: 1.4;
+}
+
+/* ── divider ── */
+.divider { width: 100%; height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
+
+/* ── masked value ── */
+.masked {
+  display: inline-block;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  color: transparent;
+  user-select: none;
+  min-width: 80px;
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 1 — TITLE                                                  */
+/* ═══════════════════════════════════════════════════════════════ */
+#s1 { background: var(--grad); }
+#s1 .hero-stripe {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 8px;
+  background: linear-gradient(180deg, var(--sky) 0%, var(--blue) 100%);
+}
+#s1 .content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 140px 120px 100px;
+}
+#s1 h1 {
+  font-family: var(--font-d); font-size: 96px; font-weight: 800;
+  line-height: 1; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); margin-bottom: 20px;
+}
+#s1 h1 span { color: var(--sky); }
+#s1 .sub {
+  font-size: 22px; color: rgba(255,255,255,0.6);
+  font-weight: 300; margin-bottom: 48px;
+  max-width: 700px; line-height: 1.5;
+}
+#s1 .meta { display: flex; gap: 32px; align-items: center; }
+#s1 .meta-item { font-size: 13px; color: var(--muted); }
+#s1 .meta-item strong { color: var(--white); font-weight: 600; display: block; font-size: 16px; }
+#s1 .logo-wrap {
+  position: absolute; right: 120px; top: 50%; transform: translateY(-50%);
+  opacity: 0.12;
+}
+#s1 .logo-wrap img { width: 400px; }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 2 — AGENDA                                                 */
+/* ═══════════════════════════════════════════════════════════════ */
+#s2 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: flex; flex-direction: column; }
+#s2 .grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 20px; flex:1; }
+#s2 .ag-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(59,163,232,0.12);
+  border-radius: 10px; padding: 28px 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: border-color 0.2s;
+}
+#s2 .ag-num {
+  font-family: var(--font-d); font-size: 56px; font-weight: 800;
+  color: rgba(59,163,232,0.2); line-height: 1;
+}
+#s2 .ag-title {
+  font-family: var(--font-d); font-size: 20px; font-weight: 700;
+  text-transform: uppercase; color: var(--white); line-height: 1.2;
+}
+#s2 .ag-sub { font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: auto; }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 3 — BACKGROUND / PROBLEM                                   */
+/* ═══════════════════════════════════════════════════════════════ */
+#s3 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+#s3 .problem-list { display: flex; flex-direction: column; gap: 16px; }
+#s3 .prob-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: rgba(220,38,38,0.06);
+  border: 1px solid rgba(220,38,38,0.2);
+  border-radius: 8px; padding: 20px 24px;
+}
+#s3 .prob-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+#s3 .prob-text { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.85); }
+#s3 .solution-list { display: flex; flex-direction: column; gap: 16px; }
+#s3 .sol-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: rgba(59,163,232,0.06);
+  border: 1px solid rgba(59,163,232,0.2);
+  border-radius: 8px; padding: 20px 24px;
+}
+#s3 .sol-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+#s3 .sol-text { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.85); }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 4 — USER PERSONAS                                          */
+/* ═══════════════════════════════════════════════════════════════ */
+#s4 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; }
+#s4 .grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; height: 100%; }
+#s4 .persona {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(59,163,232,0.15);
+  border-radius: 12px; padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+#s4 .persona-icon { font-size: 40px; }
+#s4 .persona-name { font-family: var(--font-d); font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--sky); }
+#s4 .persona-role { font-size: 13px; color: var(--muted); }
+#s4 .persona-goal {
+  background: rgba(59,163,232,0.06); border: 1px solid rgba(59,163,232,0.15);
+  border-radius: 6px; padding: 12px 14px;
+  font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.8);
+}
+#s4 .persona-struggle {
+  font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.5);
+  padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 5 — COMPETITOR COMPARISON                                  */
+/* ═══════════════════════════════════════════════════════════════ */
+#s5 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+#s5 .comp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(59,163,232,0.15); border-radius: 12px; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; }
+#s5 .comp-card.highlight { border-color: var(--blue); background: rgba(26,86,219,0.08); }
+#s5 .comp-name { font-family: var(--font-d); font-size: 28px; font-weight: 800; text-transform: uppercase; }
+#s5 .comp-sub { font-size: 13px; color: var(--muted); }
+#s5 .feat-list { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+#s5 .feat-row { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.8); }
+#s5 .feat-row::before { content: '▸'; color: var(--sky); font-size: 12px; margin-top: 3px; flex-shrink: 0; }
+#s5 .feat-row.no::before { content: '✕'; color: rgba(220,38,38,0.7); }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 6 — FEATURES                                               */
+/* ═══════════════════════════════════════════════════════════════ */
+#s6 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+#s6 .feat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(59,163,232,0.15); border-radius: 12px; padding: 32px; display: flex; flex-direction: column; }
+#s6 .feat-num { font-family: var(--font-d); font-size: 48px; font-weight: 800; color: rgba(59,163,232,0.2); line-height: 1; margin-bottom: 8px; }
+#s6 .feat-title { font-family: var(--font-d); font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--sky); margin-bottom: 10px; }
+#s6 .feat-desc { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); flex: 1; }
+#s6 .feat-tag { margin-top: 20px; }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 7 — SYSTEM ARCHITECTURE                                    */
+/* ═══════════════════════════════════════════════════════════════ */
+#s7 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
+#s7 .arch-diagram { display: flex; flex-direction: column; gap: 16px; }
+#s7 .arch-row { display: flex; align-items: center; gap: 12px; }
+#s7 .arch-node {
+  background: rgba(26,86,219,0.15); border: 1px solid rgba(59,163,232,0.3);
+  border-radius: 8px; padding: 14px 20px;
+  font-size: 14px; font-weight: 600; color: var(--white);
+  text-align: center; min-width: 160px;
+}
+#s7 .arch-node.primary { background: rgba(26,86,219,0.3); border-color: var(--blue); }
+#s7 .arch-arrow { font-size: 20px; color: rgba(59,163,232,0.5); flex-shrink: 0; }
+#s7 .legend-list { display: flex; flex-direction: column; gap: 16px; }
+#s7 .legend-item { display: flex; gap: 16px; align-items: flex-start; }
+#s7 .leg-num {
+  font-family: var(--font-d); font-size: 36px; font-weight: 800;
+  color: var(--sky); line-height: 1; flex-shrink: 0; width: 40px;
+}
+#s7 .leg-text { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); }
+#s7 .leg-text strong { color: var(--white); }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 8 — OKRs / SUCCESS METRICS                                 */
+/* ═══════════════════════════════════════════════════════════════ */
+#s8 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+#s8 .okr-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(59,163,232,0.15); border-radius: 12px; padding: 32px; }
+#s8 .okr-head { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+#s8 .okr-num { font-family: var(--font-d); font-size: 16px; font-weight: 700; color: var(--sky); background: rgba(59,163,232,0.12); border: 1px solid rgba(59,163,232,0.3); border-radius: 4px; padding: 4px 10px; }
+#s8 .okr-title { font-family: var(--font-d); font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--white); }
+#s8 .kpi-list { display: flex; flex-direction: column; gap: 10px; }
+#s8 .kpi-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 6px; font-size: 13px; }
+#s8 .kpi-name { color: rgba(255,255,255,0.7); }
+#s8 .kpi-val { font-weight: 700; color: var(--sky); font-family: var(--font-d); font-size: 15px; letter-spacing: 0.5px; }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 9 — PRIORITIZATION MATRIX                                  */
+/* ═══════════════════════════════════════════════════════════════ */
+#s9 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+#s9 .matrix {
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+  gap: 0; border: 1px solid rgba(59,163,232,0.2); border-radius: 12px; overflow: hidden;
+  height: 480px;
+}
+#s9 .quad { padding: 28px; display: flex; flex-direction: column; gap: 8px; }
+#s9 .quad.q1 { background: rgba(59,163,232,0.1); border-right: 1px solid rgba(59,163,232,0.15); border-bottom: 1px solid rgba(59,163,232,0.15); }
+#s9 .quad.q2 { background: rgba(26,86,219,0.15); border-bottom: 1px solid rgba(59,163,232,0.15); }
+#s9 .quad.q3 { background: rgba(255,255,255,0.02); border-right: 1px solid rgba(59,163,232,0.15); }
+#s9 .quad.q4 { background: rgba(220,38,38,0.06); }
+#s9 .quad-label { font-family: var(--font-d); font-size: 16px; font-weight: 700; text-transform: uppercase; }
+#s9 .quad-sub { font-size: 12px; color: var(--muted); }
+#s9 .quad-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+#s9 .feat-items { display: flex; flex-direction: column; gap: 12px; }
+#s9 .fi { display: flex; gap: 16px; align-items: flex-start; }
+#s9 .fi-tag { font-family: var(--font-d); font-size: 13px; font-weight: 700; color: var(--sky); min-width: 50px; }
+#s9 .fi-text { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.8); }
+
+/* ═══════════════════════════════════════════════════════════════ */
+/* SLIDE 10 — IMPACT / CLOSING                                      */
+/* ═══════════════════════════════════════════════════════════════ */
+#s10 { background: var(--grad); }
+#s10 .body { position: absolute; top: 120px; left: 64px; right: 64px; bottom: 80px; display: flex; flex-direction: column; justify-content: center; gap: 48px; }
+#s10 .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+#s10 .stat {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(59,163,232,0.2);
+  border-radius: 12px; padding: 32px; text-align: center;
+}
+#s10 .closing {
+  font-family: var(--font-d); font-size: 36px; font-weight: 700;
+  color: rgba(255,255,255,0.7); text-align: center; line-height: 1.4;
+  max-width: 1200px; margin: 0 auto;
+}
+#s10 .closing em { color: var(--sky); font-style: normal; }
+
+/* ── slide heading shared ── */
+.slide-h {
+  position: absolute; top: 80px; left: 64px; right: 64px;
+  display: flex; align-items: baseline; gap: 20px;
+}
+.slide-h h2 { font-family: var(--font-d); font-size: 42px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--white); }
+.slide-h .h-line { flex: 1; height: 1px; background: rgba(59,163,232,0.2); }
+.slide-h .h-tag { font-family: var(--font-d); font-size: 13px; font-weight: 600; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<script type="application/json" id="speaker-notes">
+[
+  "This is the Product Definition Document for the Digital Spare Parts Catalog — a strategic initiative to replace MMKSI's legacy desktop-based catalog system with a modern, web-based platform.",
+  "We'll cover ten areas today: team overview, problem background, user personas, competitor landscape, features, system architecture, OKRs, prioritization, and our expected impact.",
+  "The core problem: MMKSI relied on CAPS — a desktop-only, licensed application — to manage spare parts data. All data had to be manually captured and distributed as PDFs or hard copy. This created enormous inefficiency and pricing update lag.",
+  "We identified four key user types: Parts Shop admins, Dealer staff, MMKSI After-Sales teams, and Fleet customers. Each has distinct tech literacy and goals — from simple parts lookup to full fleet management integration.",
+  "Both Hyundai and Suzuki have moved online, but with limitations. Hyundai restricts public access; Suzuki offers a comprehensive catalogue but without pricing integration. Our solution aims to exceed both.",
+  "Six core features: responsive microsite with CMS, parts catalogue import from CAPS, omni-channel lead integration, barcode scanner lookup, AI photo-based parts identification, and full SAP and D-NET integration.",
+  "The architecture leverages Azure OCR for automated hotspot generation, a SOA middleware API for live pricing from D-NET, and an AWS-hosted backend serving both the microsite and CMS portal.",
+  "Our four OKRs focus on system reliability, feature utilisation, daily active usage, and data quality. Key targets include 2% conversion rate, 85% active user retention, and less than 5% bad data.",
+  "Using the prioritization matrix, responsive UI and parts import are Quick Wins — high impact, low effort. The AI photo capture is a Transformational Project we scope for Phase 2.",
+  "The project digitizes a previously manual, error-prone process — reducing distribution time, improving data accuracy, and opening a direct lead-to-order pipeline for dealers and part shops across Indonesia."
+]
+</script>
+
+<deck-stage>
+
+<!-- ══ SLIDE 1 — TITLE ══════════════════════════════════════════ -->
+<section id="s1" data-screen-label="01 Title">
+  <div class="hero-stripe"></div>
+  <div class="logo-wrap"><img src="assets/bsi-logo-white.png" alt="BSI"></div>
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Product Definition Document</span>
+  </div>
+  <div class="content">
+    <div class="chip" style="margin-bottom:28px;">Strategic Initiative</div>
+    <h1>Digital Spare Parts<br><span>Catalog</span></h1>
+    <div class="sub">Replacing legacy desktop systems with a modern, integrated web platform for Mitsubishi Motors Indonesia's parts distribution network.</div>
+    <div class="meta">
+      <div class="meta-item"><strong>Client</strong>PT Mitsubishi Motors Krama Yudha (MMKSI)</div>
+      <div class="meta-item"><strong>Delivered by</strong>PT Berlian Sistem Informasi (BSI)</div>
+      <div class="meta-item"><strong>Scope</strong>Product Definition &amp; Architecture</div>
+      <div class="meta-item"><strong>Status</strong>Delivered</div>
+    </div>
+  </div>
+  <div class="slide-label">01 / 10</div>
+</section>
+
+<!-- ══ SLIDE 2 — AGENDA ═════════════════════════════════════════ -->
+<section id="s2" data-screen-label="02 Agenda">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Agenda</span>
+  </div>
+  <div class="body">
+    <div style="margin-bottom:28px;"><div class="accent"></div><h2 style="font-family:var(--font-d);font-size:42px;font-weight:800;text-transform:uppercase;letter-spacing:1px;">What We'll Cover</h2></div>
+    <div class="grid">
+      <div class="ag-item"><div class="ag-num">01</div><div class="ag-title">Background &amp; Problem</div><div class="ag-sub">Why the legacy system needed replacing</div></div>
+      <div class="ag-item"><div class="ag-num">02</div><div class="ag-title">User Personas</div><div class="ag-sub">Who uses the system and what they need</div></div>
+      <div class="ag-item"><div class="ag-num">03</div><div class="ag-title">Competitor Landscape</div><div class="ag-sub">Hyundai &amp; Suzuki benchmark</div></div>
+      <div class="ag-item"><div class="ag-num">04</div><div class="ag-title">Features &amp; Architecture</div><div class="ag-sub">What we built and how it connects</div></div>
+      <div class="ag-item"><div class="ag-num">05</div><div class="ag-title">OKRs &amp; Impact</div><div class="ag-sub">Success metrics and outcomes</div></div>
+    </div>
+  </div>
+  <div class="slide-label">02 / 10</div>
+</section>
+
+<!-- ══ SLIDE 3 — BACKGROUND / PROBLEM ══════════════════════════ -->
+<section id="s3" data-screen-label="03 Background">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Background &amp; Problem Definition</span>
+  </div>
+  <div class="slide-h"><h2>The Problem</h2><div class="h-line"></div><span class="h-tag">Legacy System Constraints</span></div>
+  <div class="body">
+    <div class="problem-list">
+      <div class="prob-item"><div class="prob-icon">🔒</div><div class="prob-text"><strong>Desktop-only access.</strong> CAPS was a licensed desktop application — no web access, no mobile, no external integration.</div></div>
+      <div class="prob-item"><div class="prob-icon">✋</div><div class="prob-text"><strong>Fully manual distribution.</strong> All parts data had to be manually captured and converted to PDF or printed as hard copy for dealer distribution.</div></div>
+      <div class="prob-item"><div class="prob-icon">⏱</div><div class="prob-text"><strong>Slow pricing &amp; image updates.</strong> Price list changes required manual re-entry across separate systems with no single source of truth.</div></div>
+    </div>
+    <div class="solution-list">
+      <div class="sol-item"><div class="sol-icon">🌐</div><div class="sol-text"><strong>Web-based microsite.</strong> Unlimited access for dealers and parts shops — no license required, fully responsive across devices.</div></div>
+      <div class="sol-item"><div class="sol-icon">⚡</div><div class="sol-text"><strong>Centralised data source.</strong> Single platform integrating CAPS exports, SAP R3 pricing, and D-NET — eliminating duplicate data entry.</div></div>
+      <div class="sol-item"><div class="sol-icon">📈</div><div class="sol-text"><strong>Lead-to-order pipeline.</strong> Wishlist and omni-channel features convert parts browsing directly into dealer order opportunities.</div></div>
+    </div>
+  </div>
+  <div class="slide-label">03 / 10</div>
+</section>
+
+<!-- ══ SLIDE 4 — USER PERSONAS ══════════════════════════════════ -->
+<section id="s4" data-screen-label="04 User Personas">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">User Personas</span>
+  </div>
+  <div class="slide-h"><h2>Who Uses It</h2><div class="h-line"></div><span class="h-tag">4 User Classes</span></div>
+  <div class="body">
+    <div class="grid">
+      <div class="persona">
+        <div class="persona-icon">🔧</div>
+        <div class="persona-name">Parts Shop Admin</div>
+        <div class="persona-role">Mitsubishi Parts Shop · Jakarta · Tablet &amp; Phone</div>
+        <div class="persona-goal">Needs: Simple app showing parts recommendations based on stock availability</div>
+        <div class="persona-struggle">Pain: Hard to locate parts by number quickly; low-to-medium tech literacy</div>
+      </div>
+      <div class="persona">
+        <div class="persona-icon">🏢</div>
+        <div class="persona-name">Dealer Staff</div>
+        <div class="persona-role">Mitsubishi Dealer · Jakarta · PC Computer</div>
+        <div class="persona-goal">Needs: Find parts by model &amp; vehicle variant; familiar with DMS systems</div>
+        <div class="persona-struggle">Pain: Difficult to cross-reference part numbers across vehicle models</div>
+      </div>
+      <div class="persona">
+        <div class="persona-icon">🎯</div>
+        <div class="persona-name">MMKSI After-Sales</div>
+        <div class="persona-role">MMKSI APM · Jakarta · PC, Tablet &amp; Mobile</div>
+        <div class="persona-goal">Needs: Low-effort CMS for managing &amp; updating master parts data</div>
+        <div class="persona-struggle">Pain: High effort to maintain master data across SAP, DMS, and D-NET</div>
+      </div>
+      <div class="persona">
+        <div class="persona-icon">🚛</div>
+        <div class="persona-name">Fleet Customer</div>
+        <div class="persona-role">Fleet Service Admin · Jakarta · PC &amp; Mobile</div>
+        <div class="persona-goal">Needs: Integrated fleet &amp; vehicle master data with bulk parts ordering</div>
+        <div class="persona-struggle">Pain: Managing large fleets with many vehicle types and high parts volume</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">04 / 10</div>
+</section>
+
+<!-- ══ SLIDE 5 — COMPETITOR COMPARISON ═════════════════════════ -->
+<section id="s5" data-screen-label="05 Competitors">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Competitor Landscape</span>
+  </div>
+  <div class="slide-h"><h2>Market Benchmark</h2><div class="h-line"></div><span class="h-tag">Hyundai · Suzuki · MMKSI</span></div>
+  <div class="body">
+    <div class="comp-card">
+      <div><div class="comp-name" style="color:var(--muted);">Hyundai</div><div class="comp-sub">Digital Parts Catalogue</div></div>
+      <div class="feat-list">
+        <div class="feat-row">Parts available on website — limited public visibility</div>
+        <div class="feat-row">Shows: part name, part number</div>
+        <div class="feat-row no">No detailed pricing displayed publicly</div>
+        <div class="feat-row no">No external system integration</div>
+        <div class="feat-row no">Similar to a static e-brochure</div>
+      </div>
+    </div>
+    <div class="comp-card">
+      <div><div class="comp-name" style="color:var(--muted);">Suzuki</div><div class="comp-sub">suzuki.co.id/eparts</div></div>
+      <div class="feat-list">
+        <div class="feat-row">Comprehensive catalogue — motors, cars &amp; marine</div>
+        <div class="feat-row">No login required — fully public</div>
+        <div class="feat-row">Select by vehicle model or chassis number</div>
+        <div class="feat-row">Interactive tooltips on part images</div>
+        <div class="feat-row no">No pricing or ordering integration</div>
+      </div>
+    </div>
+    <div class="comp-card highlight">
+      <div><div class="comp-name" style="color:var(--sky);">MMKSI</div><div class="comp-sub" style="color:var(--sky);opacity:0.7;">Our Solution — Digital Spare Parts</div></div>
+      <div class="feat-list">
+        <div class="feat-row">Role-based access — dealers, shops, fleet</div>
+        <div class="feat-row">Live pricing via SAP R3 &amp; D-NET integration</div>
+        <div class="feat-row">AI-powered OCR hotspot from CAPS images</div>
+        <div class="feat-row">Wishlist → direct dealer order pipeline</div>
+        <div class="feat-row">Omni-channel tracking (GA4, MoE, email, WA)</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">05 / 10</div>
+</section>
+
+<!-- ══ SLIDE 6 — FEATURES ═══════════════════════════════════════ -->
+<section id="s6" data-screen-label="06 Features">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Feature Set</span>
+  </div>
+  <div class="slide-h"><h2>Core Features</h2><div class="h-line"></div><span class="h-tag">6 Feature Epics</span></div>
+  <div class="body">
+    <div class="feat-card"><div class="feat-num">01</div><div class="feat-title">Parts Catalogue Import</div><div class="feat-desc">Export drawings and price lists from CAPS and import via CMS with one click. System auto-converts image files and creates interactive hotspots.</div><div class="feat-tag"><span class="pill">ITD01</span></div></div>
+    <div class="feat-card"><div class="feat-num">02</div><div class="feat-title">Responsive Microsite</div><div class="feat-desc">Fully responsive web platform for dealers, parts shops and fleet customers. Auto-adapts to desktop, tablet and mobile. Includes CMS portal for user management.</div><div class="feat-tag"><span class="pill">ITD02 · ITD03</span></div></div>
+    <div class="feat-card"><div class="feat-num">03</div><div class="feat-title">Lead-to-Order Integration</div><div class="feat-desc">Wishlist feature lets users save parts and register interest. Data flows directly to dealer ordering process via After-Sales portal integration.</div><div class="feat-tag"><span class="pill">ITD04</span></div></div>
+    <div class="feat-card"><div class="feat-num">04</div><div class="feat-title">Barcode Scanner</div><div class="feat-desc">Users can scan part barcodes via mobile to instantly retrieve catalogue data — eliminating manual part number lookup.</div><div class="feat-tag"><span class="pill">ITD05</span></div></div>
+    <div class="feat-card"><div class="feat-num">05</div><div class="feat-title">AI Photo Capture</div><div class="feat-desc">Machine learning model identifies spare parts from a photo taken by the user's device — enabling lookup without knowing the part number.</div><div class="feat-tag"><span class="pill">ITD06</span></div></div>
+    <div class="feat-card"><div class="feat-num">06</div><div class="feat-title">Omni-Channel Tracking</div><div class="feat-desc">GA4 and Marketing-of-Engagement (MoE) integration tracks user behavior and drives personalised campaigns via email and WhatsApp.</div><div class="feat-tag"><span class="pill">CRM</span></div></div>
+  </div>
+  <div class="slide-label">06 / 10</div>
+</section>
+
+<!-- ══ SLIDE 7 — SYSTEM ARCHITECTURE ═══════════════════════════ -->
+<section id="s7" data-screen-label="07 Architecture">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">System Architecture</span>
+  </div>
+  <div class="slide-h"><h2>High-Level Architecture</h2><div class="h-line"></div><span class="h-tag">Azure · AWS · SOA</span></div>
+  <div class="body">
+    <div class="arch-diagram">
+      <div style="font-family:var(--font-d);font-size:14px;font-weight:600;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Data Sources</div>
+      <div class="arch-row">
+        <div class="arch-node">CAPS (ASA App)</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node primary" style="background:rgba(59,163,232,0.15);border-color:var(--sky);">Azure OCR</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node primary">CMS Backend</div>
+      </div>
+      <div class="arch-row" style="margin-left:60px;">
+        <div class="arch-node">SAP R3</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">SOA Middleware API</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node primary">Part Catalogue API</div>
+      </div>
+      <div class="arch-row" style="margin-left:120px;">
+        <div class="arch-node">D-NET</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">SOA Middleware API</div>
+      </div>
+      <div style="height:1px;background:rgba(59,163,232,0.1);margin:20px 0;"></div>
+      <div style="font-family:var(--font-d);font-size:14px;font-weight:600;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Delivery Layer (AWS)</div>
+      <div class="arch-row">
+        <div class="arch-node primary" style="background:rgba(26,86,219,0.3);border-color:var(--blue);">MMKSI Microsite</div>
+        <div class="arch-arrow">↔</div>
+        <div class="arch-node">Dealer A / B</div>
+        <div style="width:20px;"></div>
+        <div class="arch-node">Parts Shop A / B</div>
+        <div style="width:20px;"></div>
+        <div class="arch-node">Fleet / MMKSI</div>
+      </div>
+    </div>
+    <div class="legend-list">
+      <div class="legend-item"><div class="leg-num">1</div><div class="leg-text"><strong>Azure OCR</strong> — scans CAPS image exports and auto-generates interactive hotspots for each part number, eliminating manual mapping.</div></div>
+      <div class="legend-item"><div class="leg-num">2</div><div class="leg-text"><strong>SOA Middleware</strong> — API layer connecting SAP R3 and D-NET for live spare parts pricing, synchronized in real time.</div></div>
+      <div class="legend-item"><div class="leg-num">3</div><div class="leg-text"><strong>CMS Backend</strong> — manages content, users, access control, and omni-channel campaign triggers for the microsite.</div></div>
+      <div class="legend-item"><div class="leg-num">4</div><div class="leg-text"><strong>AWS-hosted microsite</strong> — serves all user groups (Dealers, Parts Shops, Fleet) via a single responsive web platform with role-based views.</div></div>
+    </div>
+  </div>
+  <div class="slide-label">07 / 10</div>
+</section>
+
+<!-- ══ SLIDE 8 — OKRs ═══════════════════════════════════════════ -->
+<section id="s8" data-screen-label="08 OKRs">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Success Metrics</span>
+  </div>
+  <div class="slide-h"><h2>OKRs</h2><div class="h-line"></div><span class="h-tag">4 Objectives · 12 Key Results</span></div>
+  <div class="body">
+    <div class="okr-card">
+      <div class="okr-head"><span class="okr-num">OKR 1</span><span class="okr-title">Reliable Application</span></div>
+      <div class="kpi-list">
+        <div class="kpi-row"><span class="kpi-name">Conversion Rate</span><span class="kpi-val">&gt; 2%</span></div>
+        <div class="kpi-row"><span class="kpi-name">New Customer Growth</span><span class="kpi-val">&gt; 12.5%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Churn Rate</span><span class="kpi-val">≤ 1.09%</span></div>
+        <div class="kpi-row"><span class="kpi-name">BE Response (Info)</span><span class="kpi-val">&lt; 5 sec</span></div>
+        <div class="kpi-row"><span class="kpi-name">BE Response (Tx)</span><span class="kpi-val">&lt; 2 sec</span></div>
+        <div class="kpi-row"><span class="kpi-name">System Downtime</span><span class="kpi-val">&lt; 2%</span></div>
+      </div>
+    </div>
+    <div class="okr-card">
+      <div class="okr-head"><span class="okr-num">OKR 2</span><span class="okr-title">Fulfilling User Needs</span></div>
+      <div class="kpi-list">
+        <div class="kpi-row"><span class="kpi-name">Wishlist Feature Utilisation</span><span class="kpi-val">&gt; 80%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Share (WA / Email)</span><span class="kpi-val">&gt; 50%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Download Feature Usage</span><span class="kpi-val">&gt; 50%</span></div>
+      </div>
+      <div style="height:24px;"></div>
+      <div class="okr-head"><span class="okr-num">OKR 3</span><span class="okr-title">Daily Active Use</span></div>
+      <div class="kpi-list">
+        <div class="kpi-row"><span class="kpi-name">Active Users</span><span class="kpi-val">&gt; 85%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Session Length Retention</span><span class="kpi-val">&gt; 80%</span></div>
+      </div>
+    </div>
+    <div class="okr-card" style="grid-column:1/-1; max-height:160px;">
+      <div class="okr-head" style="margin-bottom:12px;"><span class="okr-num">OKR 4</span><span class="okr-title">Data Quality</span></div>
+      <div class="kpi-list" style="flex-direction:row;gap:16px;">
+        <div class="kpi-row" style="flex:1;"><span class="kpi-name">OCR Accuracy — Bad Quality Data</span><span class="kpi-val">&lt; 5%</span></div>
+        <div class="kpi-row" style="flex:1;"><span class="kpi-name">Not Available / Missing Parts Data</span><span class="kpi-val">&lt; 5%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-label">08 / 10</div>
+</section>
+
+<!-- ══ SLIDE 9 — PRIORITIZATION ═════════════════════════════════ -->
+<section id="s9" data-screen-label="09 Prioritization">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Feature Prioritization</span>
+  </div>
+  <div class="slide-h"><h2>Priority Matrix</h2><div class="h-line"></div><span class="h-tag">Impact vs Effort</span></div>
+  <div class="body">
+    <div class="matrix">
+      <div class="quad q2">
+        <div class="quad-label" style="color:var(--sky);">Quick Wins</div>
+        <div class="quad-sub">High Impact · Low Effort</div>
+        <div class="quad-tags">
+          <span class="pill">ITD01 Parts Import</span>
+          <span class="pill">ITD02 Responsive UI</span>
+          <span class="pill">ITD03 CMS Portal</span>
+        </div>
+      </div>
+      <div class="quad q1">
+        <div class="quad-label" style="color:#a78bfa;">Transformational</div>
+        <div class="quad-sub">High Impact · High Effort</div>
+        <div class="quad-tags">
+          <span class="pill" style="border-color:#7c3aed;color:#a78bfa;background:rgba(124,58,237,0.15);">ITD06 AI Capture</span>
+          <span class="pill" style="border-color:#7c3aed;color:#a78bfa;background:rgba(124,58,237,0.15);">ITD04 Lead Integration</span>
+        </div>
+      </div>
+      <div class="quad q3">
+        <div class="quad-label" style="color:var(--muted);">Fill-Ins</div>
+        <div class="quad-sub">Low Impact · Low Effort</div>
+      </div>
+      <div class="quad q4">
+        <div class="quad-label" style="color:rgba(220,38,38,0.7);">Avoid / Defer</div>
+        <div class="quad-sub">Low Impact · High Effort</div>
+      </div>
+    </div>
+    <div class="feat-items">
+      <div style="font-family:var(--font-d);font-size:16px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Feature Breakdown</div>
+      <div class="fi"><div class="fi-tag">ITD01</div><div class="fi-text">Import Parts Catalogues — Export from CAPS, auto-convert to interactive web format</div></div>
+      <div class="fi"><div class="fi-tag">ITD02</div><div class="fi-text">Responsive UI Platform — Auto-adapt layout to desktop, tablet, and mobile</div></div>
+      <div class="fi"><div class="fi-tag">ITD03</div><div class="fi-text">Microsite + CMS — Omni-channel tracking, GA4, Marketing-of-Engagement</div></div>
+      <div class="fi"><div class="fi-tag">ITD04</div><div class="fi-text">Lead-to-Opportunity — Wishlist → dealer order pipeline via After-Sales portal</div></div>
+      <div class="fi"><div class="fi-tag">ITD05</div><div class="fi-text">Barcode Scanner — Scan part barcode via mobile for instant catalogue lookup</div></div>
+      <div class="fi"><div class="fi-tag">ITD06</div><div class="fi-text">AI Photo Capture — ML model identifies parts from device camera image</div></div>
+    </div>
+  </div>
+  <div class="slide-label">09 / 10</div>
+</section>
+
+<!-- ══ SLIDE 10 — IMPACT / CLOSING ═════════════════════════════ -->
+<section id="s10" data-screen-label="10 Impact">
+  <div class="nav">
+    <img src="assets/bsi-logo-white.png" class="nav-logo" alt="BSI">
+    <span class="nav-tag">Project Impact</span>
+  </div>
+  <div class="body">
+    <div style="text-align:center;margin-bottom:8px;"><div class="accent" style="margin:0 auto 16px;"></div><h2 style="font-family:var(--font-d);font-size:48px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--white);">Delivered Impact</h2></div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">User classes served across dealers, parts shops &amp; fleet</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Feature epics delivered across the platform</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Manual PDF distribution steps — fully digitised</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Backend systems integrated — SAP R3, D-NET, CAPS</div>
+      </div>
+    </div>
+    <div class="closing">
+      Replaced a manual, desktop-bound legacy process with a <em>live, integrated web platform</em> — reducing distribution time, improving data accuracy, and opening a <em>direct lead-to-order pipeline</em> for MMKSI's nationwide dealer &amp; parts shop network.
+    </div>
+  </div>
+  <div class="slide-label">10 / 10</div>
+</section>
+
+</deck-stage>
+<script src="deck-stage.js"></script>
+</body>
+</html>

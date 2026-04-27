@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f1f5f9; padding: 20px; font-family: 'Inter', sans-serif; display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .card { background: white; border-radius: 10px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(13,36,97,0.10); padding: 20px; width: 190px; }
+  .card-dark { background: #0d2461; border-color: #12348a; }
+  .card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; color: #0f172a; margin-bottom: 6px; }
+  .card-title-inv { color: white; }
+  .card-body { font-size: 13px; color: #475569; line-height: 1.55; }
+  .card-body-inv { color: rgba(255,255,255,0.75); }
+  .tag { display:inline-block; padding:2px 8px; border-radius:9999px; font-size:10px; font-weight:600; background:#eff6ff; color:#1a46b8; margin-top:10px; }
+  .tag-inv { background: rgba(255,255,255,0.15); color: white; }
+  .stat { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.25rem; color: #1a56db; line-height: 1; margin-bottom: 4px; }
+  .stat-inv { color: #3ba3e8; }
+  .divider { border: none; border-top: 1px solid #e2e8f0; margin: 12px 0; }
+  .divider-inv { border-color: rgba(255,255,255,0.15); }
+</style>
+</head>
+<body>
+  <!-- Default card -->
+  <div class="card">
+    <div class="card-title">Layanan IT</div>
+    <div class="card-body">Konsultasi dan implementasi sistem informasi untuk kebutuhan bisnis Anda.</div>
+    <span class="tag">Enterprise</span>
+  </div>
+  <!-- Stat card -->
+  <div class="card">
+    <div class="card-body" style="color:#64748b;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Klien Aktif</div>
+    <div class="stat">240+</div>
+    <hr class="divider">
+    <div class="card-body" style="font-size:12px;">↑ 18% dari tahun lalu</div>
+  </div>
+  <!-- Dark card -->
+  <div class="card card-dark">
+    <div class="card-title card-title-inv">Infrastruktur Cloud</div>
+    <div class="card-body card-body-inv">Solusi cloud yang aman, skalabel, dan efisien untuk transformasi digital.</div>
+    <span class="tag tag-inv">Cloud</span>
+  </div>
+  <!-- Stat dark -->
+  <div class="card card-dark">
+    <div class="card-body card-body-inv" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Uptime SLA</div>
+    <div class="stat stat-inv">99.9%</div>
+    <hr class="divider divider-inv">
+    <div class="card-body card-body-inv" style="font-size:12px;">Jaminan ketersediaan layanan</div>
+  </div>
+</body>
+</html>

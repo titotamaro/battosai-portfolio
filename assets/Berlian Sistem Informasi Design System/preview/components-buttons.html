@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f8fafc; padding: 20px; font-family: 'Inter', sans-serif; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .btn { display:inline-flex; align-items:center; gap:6px; font-family:'Inter', sans-serif; font-size:14px; font-weight:600; padding:9px 20px; border-radius:6px; border:none; cursor:pointer; transition:all 0.15s; text-decoration:none; }
+  .section-title { font-size: 10px; font-weight: 600; color: #94a3b8; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="section-title">Primary</div>
+<div class="row">
+  <button class="btn" style="background:#1a56db;color:white;">Default</button>
+  <button class="btn" style="background:#12348a;color:white;">Hover</button>
+  <button class="btn" style="background:#0d2461;color:white;transform:scale(0.97);">Active</button>
+  <button class="btn" style="background:#94a3b8;color:white;cursor:not-allowed;">Disabled</button>
+</div>
+<div class="section-title">Secondary (Outlined)</div>
+<div class="row">
+  <button class="btn" style="background:transparent;color:#1a56db;border:1.5px solid #1a56db;">Default</button>
+  <button class="btn" style="background:#eff6ff;color:#1a56db;border:1.5px solid #1a56db;">Hover</button>
+  <button class="btn" style="background:#dbeafe;color:#12348a;border:1.5px solid #12348a;transform:scale(0.97);">Active</button>
+  <button class="btn" style="background:transparent;color:#cbd5e1;border:1.5px solid #cbd5e1;cursor:not-allowed;">Disabled</button>
+</div>
+<div class="section-title">Ghost</div>
+<div class="row">
+  <button class="btn" style="background:transparent;color:#475569;">Default</button>
+  <button class="btn" style="background:#f1f5f9;color:#334155;">Hover</button>
+  <button class="btn" style="background:#e2e8f0;color:#1e293b;transform:scale(0.97);">Active</button>
+</div>
+<div class="section-title">Sizes</div>
+<div class="row" style="align-items:center;">
+  <button class="btn" style="background:#1a56db;color:white;font-size:12px;padding:6px 14px;">Small</button>
+  <button class="btn" style="background:#1a56db;color:white;">Medium</button>
+  <button class="btn" style="background:#1a56db;color:white;font-size:16px;padding:12px 28px;">Large</button>
+</div>
+</body>
+</html>

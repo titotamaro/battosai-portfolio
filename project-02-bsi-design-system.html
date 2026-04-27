@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSI Design System — Project Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #111827;
+    --surface-2: #1f2937;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: rgba(148,163,184,0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { min-height: 100vh; background: radial-gradient(circle at top, rgba(56,189,248,0.12), transparent 28%), var(--bg); color: var(--text); font-family: 'Space Mono', monospace; line-height: 1.6; }
+  a { color: var(--accent); text-decoration: none; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 48px; }
+  .topbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 28px; }
+  .topbar h1 { font-size: clamp(32px, 4vw, 44px); letter-spacing: 0.08em; }
+  .topbar .meta { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.18em; }
+  .hero { background: rgba(15,23,42,0.95); border: 1px solid var(--border); border-radius: 18px; padding: 32px; display: grid; grid-template-columns: 1fr 320px; gap: 28px; margin-bottom: 28px; }
+  .hero p { color: var(--text); }
+  .hero-badge { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em; }
+  .hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .card h2 { margin-bottom: 14px; font-size: 18px; }
+  .card ul { list-style: none; display: grid; gap: 12px; }
+  .card li { padding-left: 16px; position: relative; color: var(--text); }
+  .card li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 24px; }
+  .footer { margin-top: 36px; color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .back-link { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--border); padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,0.03); }
+  .visual { background: linear-gradient(135deg, rgba(56,189,248,0.18), rgba(15,23,42,0.8)); border: 1px dashed rgba(148,163,184,0.3); border-radius: 16px; min-height: 280px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px; text-align: center; padding: 24px; }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div>
+        <div class="hero-badge"><span></span>BSI SYSTEM DESIGN</div>
+        <h1>Berlian Sistem Informasi Design System</h1>
+      </div>
+      <div class="meta">Enterprise design foundation · UI library · governance</div>
+    </div>
+
+    <div class="hero">
+      <div>
+        <p style="font-size:14px; color: var(--muted); margin-bottom: 20px;">This dedicated showcase page highlights the system design work created for Berlian Sistem Informasi (BSI), with a focus on reusable components, consistent interaction patterns, and a scalable governance model for BSI’s enterprise applications.</p>
+        <div class="card">
+          <h2>Project summary</h2>
+          <p>Built the BSI design system to standardize UI behavior, visual language, and component usage across the organization. The effort included system architecture, component definitions, accessibility guardrails, and handoffs to product and engineering teams.</p>
+        </div>
+      </div>
+      <div class="visual">
+        Design system showcase<br>placeholder
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h2>What I delivered</h2>
+        <ul>
+          <li>Design system architecture for enterprise applications</li>
+          <li>Reusable component library and pattern guidelines</li>
+          <li>Interaction rules for forms, data tables, and navigation</li>
+          <li>Governance framework for consistent UI across BSI products</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Impact</h2>
+        <ul>
+          <li>Reduced design inconsistency across BSI digital products</li>
+          <li>Improved handoff speed between design and engineering</li>
+          <li>Created a scalable foundation for future product launches</li>
+          <li>Enabled faster UI changes with shared patterns and tokens</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note">Note: This page is linked from the CyberPunk portfolio projects section as the BSI system design showcase.</div>
+
+    <div class="footer">
+      <a class="back-link" href="Wireframe v2.html">← Back to portfolio</a>
+      <div>Created for Berlian Sistem Informasi design system work</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 20px; }
+  .row { display: flex; gap: 8px; }
+  .swatch { flex: 1; border-radius: 6px; overflow: hidden; }
+  .color { height: 64px; }
+  .label { padding: 6px 8px; background: white; border-top: 1px solid #e2e8f0; }
+  .name { font-size: 11px; font-weight: 600; color: #334155; }
+  .hex  { font-size: 10px; color: #94a3b8; font-family: monospace; }
+  .gradient-block { height: 64px; border-radius: 6px; background: linear-gradient(135deg, #061540 0%, #1a56db 50%, #3ba3e8 100%); margin-top: 12px; display: flex; align-items: center; padding: 0 16px; }
+  .gradient-block span { color: white; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch"><div class="color" style="background:#061540"></div><div class="label"><div class="name">Brand 900</div><div class="hex">#061540</div></div></div>
+  <div class="swatch"><div class="color" style="background:#0d2461"></div><div class="label"><div class="name">Brand 800</div><div class="hex">#0d2461</div></div></div>
+  <div class="swatch"><div class="color" style="background:#12348a"></div><div class="label"><div class="name">Brand 700</div><div class="hex">#12348a</div></div></div>
+  <div class="swatch"><div class="color" style="background:#1a46b8"></div><div class="label"><div class="name">Brand 600</div><div class="hex">#1a46b8</div></div></div>
+  <div class="swatch"><div class="color" style="background:#1a56db"></div><div class="label"><div class="name">Brand 500</div><div class="hex">#1a56db</div></div></div>
+  <div class="swatch"><div class="color" style="background:#1e7bc4"></div><div class="label"><div class="name">Brand 400</div><div class="hex">#1e7bc4</div></div></div>
+  <div class="swatch"><div class="color" style="background:#3ba3e8"></div><div class="label"><div class="name">Brand 300</div><div class="hex">#3ba3e8</div></div></div>
+  <div class="swatch"><div class="color" style="background:#90cdf4"></div><div class="label"><div class="name">Brand 200</div><div class="hex">#90cdf4</div></div></div>
+  <div class="swatch"><div class="color" style="background:#dbeafe"></div><div class="label"><div class="name">Brand 100</div><div class="hex">#dbeafe</div></div></div>
+  <div class="swatch"><div class="color" style="background:#eff6ff; border: 1px solid #e2e8f0;"></div><div class="label"><div class="name">Brand 50</div><div class="hex">#eff6ff</div></div></div>
+</div>
+<div class="gradient-block" style="margin-top:12px;">
+  <span>Brand Gradient — 135° Navy → Royal → Sky</span>
+</div>
+</body>
+</html>
