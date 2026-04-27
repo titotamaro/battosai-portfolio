@@ -5,7 +5,7 @@ This repository contains the `battosai portfolio` project: a cyberpunk-inspired 
 ## Project Overview
 
 - **Project name:** battosai portfolio
-- **Main file:** `Wireframe v2.html`
+- **Main file:** `index.html`
 - **Purpose:** showcase user ability to present a professional personal brand, highlight product leadership, and demonstrate design system and project delivery experience.
 - **Style:** full-viewport wireframe sections, bold cyberpunk visual language, responsive layout, and mobile hamburger navigation.
 
@@ -49,7 +49,7 @@ This repository contains the `battosai portfolio` project: a cyberpunk-inspired 
 
 ## Files Included
 
-- `Wireframe v2.html` — main portfolio page
+- `index.html` — main portfolio page
 - `project-01-spare-parts.html` — existing case study page
 - `project-02-bsi-design-system.html` — new design system showcase page
 - `assets/` — media assets, fonts, video, and attached CV

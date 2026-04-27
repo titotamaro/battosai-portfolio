@@ -1,0 +1,28 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Rename Wireframe v2.html to index.html",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"ren",
+				"Wireframe v2.html",
+				"index.html"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Rename Wireframe v2.html to index.html",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"ren",
+				"Wireframe v2.html",
+				"index.html"
+			]
+		}
+	]
+}
