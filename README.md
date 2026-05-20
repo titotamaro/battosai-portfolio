@@ -1,10 +1,10 @@
-# battosai portfolio
+# Tito Tamaro Portfolio
 
-This repository contains the `battosai portfolio` project: a cyberpunk-inspired portfolio wireframe built in plain HTML and CSS to showcase product management, design system, and digital product capabilities.
+This repository contains a cyberpunk-inspired portfolio wireframe built in plain HTML and CSS to showcase product management, design system, and digital product capabilities.
 
 ## Project Overview
 
-- **Project name:** battosai portfolio
+- **Project name:** Tito Tamaro Portfolio
 - **Main file:** `index.html`
 - **Purpose:** showcase user ability to present a professional personal brand, highlight product leadership, and demonstrate design system and project delivery experience.
 - **Style:** full-viewport wireframe sections, bold cyberpunk visual language, responsive layout, and mobile hamburger navigation.
@@ -39,20 +39,6 @@ This repository contains the `battosai portfolio` project: a cyberpunk-inspired 
 6. **Contact**
    - CTA grid linking to GitHub, WhatsApp, and downloadable CV
    - Clear call-to-action for connection and follow-up
-
-## New Work Added
-
-- **BSI Design System project**
-  - Added as the second featured project tile in the portfolio
-  - Summary: built the system design foundation for BSI, including reusable UI patterns, component standards, and governance for enterprise applications
-  - Dedicated showcase page created at `project-02-bsi-design-system.html`
-
-## Files Included
-
-- `index.html` — main portfolio page
-- `project-01-spare-parts.html` — existing case study page
-- `project-02-bsi-design-system.html` — new design system showcase page
-- `assets/` — media assets, fonts, video, and attached CV
 
 ## Notes
 
